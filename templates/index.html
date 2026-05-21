@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DataWIZ - Data Cleaner</title>
+    <style>
+        body { background: #0F172A; color: white; font-family: sans-serif; padding: 20px; }
+       .container { max-width: 800px; margin: auto; }
+       .table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+       .table th,.table td { border: 1px solid #3B82F6; padding: 8px; }
+        button { background: #3B82F6; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
+        input { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DataWIZ 🧙‍♂️</h1>
+        <p>Upload your messy CSV and get it cleaned instantly</p>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Clean My Data</button>
+        </form>
+        {% if cleaned %}
+            <h3>Rows Before: {{ shape_before[0] }} → After: {{ shape_after[0] }}</h3>
+            <img src="data:image/png;base64,{{ plot_url }}" style="width:100%; margin: 20px 0;">
+            <h3>Cleaned Data Preview:</h3>
+            {{ data|safe }}
+        {% endif %}
+    </div>
+</body>
+</html>
